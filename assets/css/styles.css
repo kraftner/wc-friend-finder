@@ -1,0 +1,377 @@
+/* eb-garamond-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/eb-garamond-v26-latin-regular.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+  url('../fonts/eb-garamond-v26-latin-regular.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* inter-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/inter-v12-latin-regular.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+  url('../fonts/inter-v12-latin-regular.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+.no-js .no-js-message {
+  border: solid 5px currentColor;
+  color: red;
+  padding: 1em;
+}
+
+.js .no-js-message {
+  display: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.125rem, 1rem + 1vw, 1.375rem);
+  color: rgb(30, 30, 30);
+  margin: 0;
+  padding: 0;
+
+  --blue: #3858e9;
+  --dark: rgb(30, 30, 30);
+  --off-white: rgb(255, 233, 222);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3 {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(2.3rem, 4em, 6vw);
+  margin: 0.7em 0 0.5em;
+}
+
+h3 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+a {
+  color:#3858e9;
+}
+
+a:not(.button):focus-within {
+  outline: solid 5px currentColor;
+}
+
+a:focus,
+a:hover {
+  text-decoration: none;
+}
+
+button,
+.button {
+  border: none;
+  margin: 0.5em 10px 0.5em 0;
+  padding: 0.75em 1.25em;
+  background: black;
+  color: white;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+button,
+.button:not(summary) {
+  display: inline-block;
+}
+
+button:focus,
+button:hover,
+.button:focus,
+.button:hover {
+  outline: solid 5px black;
+  outline-offset: 3px;
+}
+
+label {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.step {
+  min-height: 50vh;
+  border-top: solid 1px white;
+  padding: 1px 2em 2em;
+}
+
+.step--light {
+  padding-bottom: 4em;
+}
+
+.step--dark {
+  min-height: 100vh;
+  background: var(--dark);
+  color: white;
+}
+
+#step-1 {
+  min-height: calc(100vh - 6rem);
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  align-content: flex-end;
+  gap: 1em;
+}
+
+input[type=search] {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  margin-top: 0.5em;
+  padding: 0.75em;
+  background: white;
+  color: var(--dark);
+  font-size: inherit;
+}
+
+input[type=search]:focus-within {
+  outline: solid 5px var(--blue);
+}
+
+hr {
+  display: inline-block;
+  margin: 1em 0;
+  border: none;
+  border-top: solid 1px currentColor;
+  width: 200px;
+  max-width: 80vw;
+  color: inherit;
+}
+
+/* Header */
+
+header {
+  background: var(--blue);
+  color: white;
+}
+
+header h1 {
+  font-size: clamp(2.5rem, 1rem + 8vw, 8rem);
+  margin: 1em 0 0;
+  max-width: 18ch;
+}
+
+h1 span:first-child {
+  display: block;
+  font-size: clamp(1.2rem, 0.5rem + 3vw, 2rem);
+}
+
+.wapuu {
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  height: 2em;
+  max-width: 10vw;
+  margin-left: 0.5em;
+}
+
+header p {
+  max-width: 60ch;
+}
+
+/* How does it work? */
+
+.how-does-it-work {
+  max-width: 75ch;
+}
+
+aside {
+  font-size: 1rem;
+  max-width: 50ch;
+}
+
+a[href^="#note-"]{
+  vertical-align: super;
+  font-size: 0.75em;
+}
+
+div[id^="note-"]{
+  margin-left: -0.25em;
+  padding: 0.25em;
+}
+
+div[id^="note-"]:target{
+  background: var(--off-white);
+}
+
+/* Steps */
+
+details,
+.cards {
+  width: calc((230px + 15px) * 6 - 15px);
+  max-width: 100%;
+}
+
+summary {
+  margin-bottom: 2em;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 15px;
+}
+
+.cards h3,
+.cards p {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
+.card--continental {
+  background: black;
+}
+
+.card__date {
+  font-size: 0.8em;
+}
+
+.next-step {
+  max-width: 25ch;
+  margin-bottom: 0;
+}
+
+.card__content {
+  transition: opacity 150ms ease-in, background-color 150ms ease-in, outline-color 150ms ease-in;
+  display: flex;
+  height: 100%;
+  padding: 0.5em;
+  font-size: 1.125rem;
+  line-height: 1.25;
+  outline: solid 5px transparent;
+  outline-offset: 4px;
+  position: relative;
+}
+
+.card__content:hover,
+input[type=checkbox]:focus-visible + .card__content {
+  outline-color:var(--blue);
+}
+
+/* Checkbox */
+
+input[type=checkbox] {
+  position: absolute;
+  left: -9999px;
+}
+
+.card__content:before {
+  content: '';
+  display: block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+  border-radius: 5px;
+  border: solid 1px var(--blue);
+  vertical-align: center;
+  flex-shrink: 0;
+}
+
+input[type=checkbox]:checked + .card__content:before {
+  background: var(--blue);
+}
+
+input[type=checkbox]:checked + .card__content:after {
+  content: '✓';
+  position: absolute;
+  left: 0.73em;
+  top: 0.45em;
+  font-weight: bold;
+}
+
+/* Attendees */
+
+.attendees {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+
+  gap: 1.5em 0.5em;
+  list-style-type: none;
+  padding: 0;
+}
+
+.attendee {
+  display: flex;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.25;
+}
+
+.attendee img {
+  display: block;
+  width: 2.5em;
+  height: 2.5em;
+  margin-right: 0.5em;
+  border: solid 1px white;
+  background: var(--dark);
+  transition: transform 200ms ease 50ms;
+}
+
+.attendee:hover img{
+  transform: scale(3);
+}
+
+figcaption{
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer */
+
+footer {
+  min-height: 5em;
+  padding: 1em 2em;
+  background: var(--blue);
+  color: white;
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+
+footer a {
+  color: white;
+}
+
+@media (min-width: 768px) {
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+
+  footer p {
+    margin: 0.25em 0;
+  }
+
+  footer p:first-child {
+    font-size: 1rem;
+    width: 100%;
+  }
+
+}
