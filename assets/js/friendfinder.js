@@ -98,6 +98,8 @@
 
     this.loadedWordCamps = loadedWordCamps;
 
+    console.table(loadedWordCamps, ['name', 'id',]);
+
     loadWordCampsFromQuery.call(this, loadedWordCamps);
   }
 
@@ -148,6 +150,7 @@
   async function attendees(camp) {
     const apiUrl = new URL('wp-json/wp/v2/pages', camp.url);
     apiUrl.searchParams.append('_fields[]', 'content.rendered');
+    if(window.location.hostname === 'localhost') apiUrl.searchParams.append('_fields[]', 'link');
     apiUrl.searchParams.append('search', 'camptix_attendees');
     const attendeePageSearchApiUrl = apiUrl.toString();
     const attendeePageSearchApiResponse = await fetch(attendeePageSearchApiUrl);
@@ -272,20 +275,17 @@
 
     }))
 
-    if(window.location.hostname !== 'localhost'){
-      console.log('So, you are looking under the hood? Great!');
-      console.log('There are some more advanced ways to use this tool by creating direct links with query arguments:');
-      const base = window.location.origin + window.location.pathname;
-      console.table([
-        { name: 'wordcamp_id', type: 'int', description: 'Pre-select one or more WordCamps (separated by commas) and load the corresponding attendees. You can get the IDs from the table you should see in the console below this.', example: base + '?wordcamp_id=3154790'},
-        { name: 'wordcamp', type: 'string', description: 'Pre-fill the WordCamp filter with a string.', example: base + '?wordcamp=Europe'},
-        { name: 'attendee', type: 'string', description: 'Pre-fill the Attendee filter with a string.', example: base + '?attendee=Doe'},
-        { name: 'showOlder', type: 'bool', description: 'Load more past WordCamps, up to 100 in total.', example: base + '?showOlder'},
-      ])
-      console.log('Here is an example for everything together:');
-      console.log(base + '?wordcamp_id=2488&wordcamp_id=3147634&wordcamp=WordCamp&attendee=Matt+Mullenweg&showOlder');
-    }
-
+    console.log('So, you are looking under the hood? Great!');
+    console.log('There are some more advanced ways to use this tool by creating direct links with query arguments:');
+    const base = window.location.origin + window.location.pathname;
+    console.table([
+      { name: 'wordcamp_id', type: 'int', description: 'Pre-select one or more WordCamps and load the corresponding attendees. You can get the IDs from the table you should see in the console below this.', example: base + '?wordcamp_id=8692144&wordcamp_id=3043982'},
+      { name: 'wordcamp', type: 'string', description: 'Pre-fill the WordCamp filter with a string.', example: base + '?wordcamp=Europe'},
+      { name: 'attendee', type: 'string', description: 'Pre-fill the Attendee filter with a string.', example: base + '?attendee=Doe'},
+      { name: 'showOlder', type: 'bool', description: 'Load more past WordCamps, up to 100 in total.', example: base + '?showOlder'},
+    ])
+    console.log('Here is an example for everything together:');
+    console.log(base + '?wordcamp=Vienna&wordcamp_id=8692144&wordcamp_id=3043982&attendee=Kr%C3%A4ftner&showOlder=');
   })
 
 })();
