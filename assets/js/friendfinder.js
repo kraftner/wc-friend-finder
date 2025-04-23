@@ -192,6 +192,41 @@
 
     Alpine.data('friendfinder', () => ({
 
+      init(){
+
+        this.$watch('selectedWordCamps', (selectedWordCamps) => {
+          const searchParams = new URLSearchParams(new URL(document.location.toString()).searchParams);
+          searchParams.delete('wordcamp_id');
+          selectedWordCamps.forEach((campId) => {
+            searchParams.append('wordcamp_id', campId);
+          });
+          searchParams.sort();
+          history.replaceState(null, null, "?" + searchParams.toString());
+        });
+
+        this.$watch('wordcamp', (wordcamp) => {
+          const searchParams = new URLSearchParams(new URL(document.location.toString()).searchParams);
+          if(wordcamp === ''){
+            searchParams.delete('wordcamp');
+          }else{
+            searchParams.set('wordcamp', wordcamp);
+          }
+          searchParams.sort();
+          history.replaceState(null, null, "?" + searchParams.toString());
+        });
+
+        this.$watch('search', (search) => {
+          const searchParams = new URLSearchParams(new URL(document.location.toString()).searchParams);
+          if(search === ''){
+            searchParams.delete('attendee');
+          }else{
+            searchParams.set('attendee', search);
+          }
+          searchParams.sort();
+          history.replaceState(null, null, "?" + searchParams.toString());
+        });
+      },
+
       wordcamp: initialWordCampSearch ? initialWordCampSearch : '',
       search: initialAttendeeSearch ? initialAttendeeSearch : '',
       showOlder: !!showOlder,
