@@ -135,7 +135,7 @@
     template.innerHTML = html;
 
     const attendees = template.content.querySelectorAll('.tix-attendee-list li');
-    return Array.prototype.map.call(attendees, (el) => {
+    const attendeeObjects = Array.prototype.map.call(attendees, (el) => {
       const src = el.querySelector('.avatar').src;
       const regex = /avatar\/(.*)\?/;
       const hash = src.match(regex)[1];
@@ -144,6 +144,32 @@
         last: el.querySelector('.tix-last').textContent || '',
         hash
       }
+    });
+
+    attendeeObjects.sort((a, b) => {
+      if (a.first <  b.first) {
+        return -1;
+      }
+      if (a.first >  b.first) {
+        return 1;
+      }
+
+      if (a.last <  b.last) {
+        return -1;
+      }
+      if (a.last >  b.last) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    const seen = new Set();
+    return attendeeObjects.filter(el => {
+      const serializedObject = JSON.stringify(el);
+      const duplicate = seen.has(serializedObject);
+      seen.add(serializedObject);
+      return !duplicate;
     });
   }
 
